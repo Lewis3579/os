@@ -14,7 +14,7 @@ pub extern "C" fn _start() -> ! {
     blog_os::gdt::init();
     init_test_idt();
 
-    // trigger a stack overflow
+    
     stack_overflow();
 
     panic!("Execution continued after stack overflow");
@@ -22,8 +22,8 @@ pub extern "C" fn _start() -> ! {
 
 #[allow(unconditional_recursion)]
 fn stack_overflow() {
-    stack_overflow(); // for each recursion, the return address is pushed
-    volatile::Volatile::new(0).read(); // prevent tail recursion optimizations
+    stack_overflow(); 
+    volatile::Volatile::new(0).read(); 
 }
 
 lazy_static! {
